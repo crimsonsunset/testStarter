@@ -5,20 +5,47 @@
 
 //globals
 var verbose = false;
-var isDev = false;
+var isDev = true;
+var url = (isDev)? "http://0.0.0.0:5000/" :"http://awsflask-d7jzwtbv7t.elasticbeanstalk.com/";
 
 var decode = (function () {
     var decode = {}
     decode.inputBtnArr = []
     decode.reachedScenario = false
+    decode.token = ""
+    decode.loginSuffix = "/login"
+    decode.tokenSuffix = "/token"
 
     function init() {
-
+        getToken()
     }
 
     init();
 
-    function calcPBGC() {
+    function getToken() {
+
+        var jqxhr = $.get(url+decode.tokenSuffix, function () {})
+            .done(function (response) {
+                decode.token = response.split(":")[1];
+                console.log("token is : " + decode.token);
+                login();
+
+            })
+            .fail(function () {
+                console.log("error fetching token");
+            });
+
+    }
+    //    IAM:<challenge number>:<user email address>:at\n
+    function login() {
+
+        var jqxhr = $.get(url+decode.loginSuffix, function () {})
+            .done(function (response) {
+
+            })
+            .fail(function () {
+                console.log("error logging in");
+            });
 
     }
 
@@ -42,11 +69,11 @@ var decode = (function () {
 String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
-Array.prototype.unique = function() {
+Array.prototype.unique = function () {
     var a = this.concat();
-    for(var i=0; i<a.length; ++i) {
-        for(var j=i+1; j<a.length; ++j) {
-            if(a[i] === a[j])
+    for (var i = 0; i < a.length; ++i) {
+        for (var j = i + 1; j < a.length; ++j) {
+            if (a[i] === a[j])
                 a.splice(j--, 1);
         }
     }
