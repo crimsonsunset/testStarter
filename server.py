@@ -32,6 +32,11 @@ MOVE_ROUTE = "/move"
 WALL_ROUTE = "/wall"
 REPORT_ROUTE = "/report"
 
+#Home Page
+@application.route("/")
+def home():
+    return("available routes are: " + START_ROUTE + " , "+EXITS_ROUTE+ " , "+MOVE_ROUTE+ " , "+ WALL_ROUTE+" , "+ REPORT_ROUTE)
+
 #Get id for first room
 @application.route(START_ROUTE)
 def start():

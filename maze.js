@@ -6,7 +6,7 @@
 
 //globals
 var isDev = false;
-var url = (isDev) ? "http://0.0.0.0:5000" : "http://awsflask-d7jzwtbv7t.elasticbeanstalk.com/"
+var url = (isDev) ? "http://0.0.0.0:5000" : "http://awsflask-d7jzwtbv7t.elasticbeanstalk.com"
 
 //routes for URL endpoints
 START_ROUTE = "/start"
@@ -223,7 +223,6 @@ var maze = (function () {
     }
 
     maze.init = function() {
-        $("#label").show();
         start();
         maze.collectData();
     }
