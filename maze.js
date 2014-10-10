@@ -29,7 +29,9 @@ var maze = (function () {
     maze.message = ""
     maze.curr = ""
 
-
+    /**
+     * Used to get the roomId of the first room
+     */
     function start() {
         $.ajax({
             url: url + START_ROUTE,
@@ -48,8 +50,8 @@ var maze = (function () {
     /**
      * Used to sort an array of objects.
      * * @param {string} field - The field you wish to sort by
-     * * @param {string} reverse - sort in ascending/descending order
-     * * @param {string} primer - function that tells how to sort
+     * * @param {boolean} reverse - sort in ascending/descending order
+     * * @param {function} primer - function that tells how to sort
      */
     var sort_by = function (field, reverse, primer) {
         var key = function (x) {
@@ -167,7 +169,7 @@ var maze = (function () {
             }
         });
     }
-    
+
     //aux functions
 
     /**
